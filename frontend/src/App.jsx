@@ -1,12 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/home/Home'
+import List from './pages/list/List'
+import Hotel from './pages/hotel/Hotel'
 
-function App() {
+const App = () => {
 
   return (
-    <div className="App">
-     Hello world
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/hospedagens/' element={<List />} />
+        <Route path='/hospedagens/:id' element={<Hotel />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -12,6 +12,10 @@
   margin: 20px 0px 100px 0px;
 }
 
+.headerContainer.listMode {
+  margin: 20px 0px 0px 0px;
+}
+
 .headerList {
   display: flex;
   gap: 40px;
@@ -25,6 +29,7 @@
 }
 
 .headerListItem.active {
+/* .headerListItem:hover { */
   border: 1px solid white;
   padding: 10px;
   border-radius: 20px;
@@ -37,8 +42,81 @@
 .headerBtn {
   background-color: #0071c2;
   color: white;
-  /* font-weight: 500; */
-  font-weight: bold;
+  font-weight: 500;
   border: none;
   padding: 10px;
+  cursor: pointer;
+}
+
+.headerSearch {
+  height: 30px;
+  background-color: white;
+  border: 3px solid #febb02;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+  max-width: 1024px;
+}
+
+.headerIcon {
+  color: lightgray;
+}
+
+.headerSearchItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerSearchInput {
+  border: none;
+  outline: none;
+}
+
+.headerSearchText {
+  color: lightgray;
+  cursor: pointer;
+}
+
+.stayOptions {
+  position: absolute;
+  top: 50px;
+  border-radius: 5px;
+  color: gray;
+  background-color: white;
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 4);
+  -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 4);
+}
+.stayOptionsItem {
+  width: 200px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stayOptionCounter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: black;
+}
+
+.stayOptionCounterButton {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #0071c2;
+  color: #0071c2;
+  cursor: pointer;
+  background-color: white;
+}
+
+.stayOptionCounterButton:disabled {
+  cursor: not-allowed;
+  background-color: rgb(211, 211, 211);
 }

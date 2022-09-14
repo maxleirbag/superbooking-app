@@ -63,8 +63,8 @@ const Header = ({ headerType }) => {
 
 				{headerType !== 'list' &&
 					<>
-						<h1 className="headertitle">You, the world, we make it happen!</h1>
-						<p className='headerDesc'>Get 12% off cashback by travelling logged in with superbooking.com</p>
+						<h1 className="headerTitle">You, the world, we make it happen!</h1>
+						<p className='headerDesc'>Get 12% off cashback by travelling logged in with Superbooking.com</p>
 						<button className="headerBtn">Sign in / Register</button>
 
 

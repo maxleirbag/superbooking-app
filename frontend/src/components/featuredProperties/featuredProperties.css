@@ -27,3 +27,16 @@
 .fpCity{
 	font-weight: 300;
 }
+
+.fpRating>button {
+	background-color: #003580;
+	color: white;
+	font-weight: bolder;
+	border: none;
+	padding: 3px;
+	margin-right: 10px;
+}
+
+.fpRating>span{
+	font-size: 14px;
+}

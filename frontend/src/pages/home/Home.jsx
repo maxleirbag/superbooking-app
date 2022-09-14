@@ -6,6 +6,7 @@ import PropertyList from '../../components/propertyList/PropertyList';
 import FeaturedProperties from '../../components/featuredProperties/FeaturedProperties';
 import FeaturedDestinations from '../../components/featuredDestinations/FeaturedDestinations';
 import Mail from '../../components/mail/Mail';
+import Footer from '../../components/footer/Footer';
 
 const Home = () => {
 	const selectedHeaderType = false;
@@ -21,6 +22,7 @@ const Home = () => {
 				<h2 className="homeTitle">Most wanted places</h2>
 				<FeaturedProperties/>
 				<Mail/>
+				<Footer/>
 			</div>
 
 		</div>

@@ -15,14 +15,12 @@
 }
 
 .logo {
-  /* font-weight: 500; */
   font-weight: bold;
 }
 
 .navButton {
-  margin-left: 20px;
-  border: none;
+  margin-left: 8px;
   padding: 5px 10px;
   cursor: pointer;
-  color: #003580;
+  color: #0071c2;
 }

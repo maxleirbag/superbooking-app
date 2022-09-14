@@ -4,14 +4,14 @@ import Navbar from "../../components/navbar/Navbar";
 const List = () => {
 
     // const selectedHeaderType = 'list';
-    const selectedHeaderType = false;
+    // const selectedHeaderType = false;
 
-    return (
-        <div>
-            <Navbar />
-            <Header headerType={selectedHeaderType} />
-        </div>
-    )
+    // return (
+    //     <div>
+    //         <Navbar />
+    //         <Header headerType={selectedHeaderType} />
+    //     </div>
+    // )
 }
 
 export default List;

@@ -6,11 +6,14 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { useState } from 'react';
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 
 const Header = ({ headerType }) => {
 
 	// TODO useEffect() se o endDate for selecionado, fecha o DateRangePicker
+
+	const [destination, setDestination] = useState("");
 
 	const [openStayOptions, setOpenStayOptions] = useState()
 	const [stayOptions, setStayOptions] = useState({
@@ -33,6 +36,12 @@ const Header = ({ headerType }) => {
 			}
 		})
 	}
+
+	const navigate = useNavigate();
+	const handleSearch = () => {
+		navigate('/hospedagens', { state: { destination, date, stayOptions } });
+	}
+
 
 	return (
 		<div className="header">
@@ -74,7 +83,8 @@ const Header = ({ headerType }) => {
 								<input
 									type="text"
 									placeholder='Where are you going?'
-									className='headerSearchInput' />
+									className='headerSearchInput'
+									onChange={e => setDestination(e.target.value)} />
 							</div>
 							<div className="headerSearchItem">
 								<FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
@@ -149,7 +159,7 @@ const Header = ({ headerType }) => {
 								}
 							</div>
 							<div className="headerSearchItem">
-								<button className="headerBtn">Search</button>
+								<button className="headerBtn" onClick={handleSearch}>Search</button>
 							</div>
 						</div>
 					</>}

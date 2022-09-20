@@ -16,7 +16,9 @@
 	background-color: #febb02;
 	padding: 10px;
 	border-radius: 10px;
+	height: max-content;
 	position: sticky;
+	top: 10px;
 }
 
 .listResult {

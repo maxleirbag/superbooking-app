@@ -32,15 +32,15 @@ const List = () => {
 							<input placeholder={destination} type="text" />
 						</div>
 						<div className="listItem" onClick={() => setOpenDate(!openDate)}>
-							<label htmlFor="">Check-in date</label>
+							<label htmlFor="">Check-in/out</label>
 							<span>{formatedDate}</span>
 							{openDate && <DateRange
 								onChange={item => setDate([item.selection])}
 								minDate={new Date()}
 							/>}
 						</div>
+						<label className="listOptionsTitle">Pricing Options</label>
 						<div className="listOptions">
-							<label className="listOptionsTitle">Pricing options</label>
 							<div className="listOptionItem">
 								<span className="listOptionText">Minimum (per night)</span>
 								<input type="number" className="listOptionInput" min={1} />
@@ -49,7 +49,9 @@ const List = () => {
 								<span className="listOptionText">Maximum (per night)</span>
 								<input type="number" className="listOptionInput" min={1} />
 							</div>
-							<label className='listOptionsTitle'>Stay options</label>
+						</div>
+						<label className="listOptionsTitle">Stay Options</label>
+						<div className="listOptions">
 							<div className="listOptionItem">
 								<span className="listOptionText">Adults</span>
 								<input type="number" className="listOptionInput" placeholder={stayOptions.adults} />

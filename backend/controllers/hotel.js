@@ -1,4 +1,5 @@
 import Hotel from "../models/Hotel.js";
+import { createError } from "../utils/error/errorHandler.js";
 
 export const createHotel = async (req, res, next) => {
 	const newHotel = new Hotel(req.body);
@@ -43,5 +44,39 @@ export const retrieveHotels = async (req, res, next) => {
 		res.status(200).json(hotels)
 	} catch (err) {
 		next(createError(401, 'Failed to find hotels'))
+	}
+}
+
+export const getHotelCountByCity = async (req, res, next) => {
+	try {
+		const cities = req.query.cities.split(',');
+		const counts = await Promise.all(cities.map((city) => {
+			return Hotel.countDocuments({ city: city })
+		}))
+		let resultingCities = cities.map((city, i) => {
+			let obj = {};
+			obj[city] = counts[i]
+			return obj
+		});
+		res.status(200).json(resultingCities)
+	} catch (err) {
+		next(createError(401, 'Failed to count hotels by cities.'))
+	}
+}
+
+export const getHotelCountByCategory = async (req, res, next) => {
+	try {
+		const categories = req.query.categories.split(',');
+		const counts = await Promise.all(categories.map((ct) => {
+			return Hotel.countDocuments({ category: ct })
+		}))
+		let resultingCategories = categories.map((ct, i) => {
+			let obj = {};
+			obj[ct] = counts[i]
+			return obj
+		});
+		res.status(200).json(resultingCategories)
+	} catch (err) {
+		next(createError(401, 'Failed to count hotels by categories.'))
 	}
 }

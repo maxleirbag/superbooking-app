@@ -2,6 +2,11 @@ import Hotel from "../models/Hotel.js";
 import { createError } from "../utils/error/errorHandler.js";
 
 export const createHotel = async (req, res, next) => {
+	const possiblePhotos = req.body.photos;
+	const validPhoto = possiblePhotos.filter((pp) => pp.includes('https'));
+	if (!validPhoto.length) {
+		res.status(400).send("You didn't provide a hotel picture.")
+	}
 	const newHotel = new Hotel(req.body);
 	try {
 		const savedHotel = await newHotel.save();
@@ -39,8 +44,13 @@ export const retrieveHotelById = async (req, res, next) => {
 }
 
 export const retrieveHotels = async (req, res, next) => {
+	const { min, max, ...otherFilters } = req.query;
 	try {
-		const hotels = await Hotel.find();
+		const hotels = await Hotel.find({
+			...otherFilters,
+			cheapestPrice: { $gt: min | 1, $lt: max || 5000 }
+		})
+			.limit(req.query.limit)
 		res.status(200).json(hotels)
 	} catch (err) {
 		next(createError(401, 'Failed to find hotels'))
@@ -67,16 +77,45 @@ export const getHotelCountByCity = async (req, res, next) => {
 export const getHotelCountByCategory = async (req, res, next) => {
 	try {
 		const categories = req.query.categories.split(',');
-		const counts = await Promise.all(categories.map((ct) => {
-			return Hotel.countDocuments({ category: ct })
+		const counts = await Promise.all(categories.map(async (ct) => {
+			const categoryCount = await Hotel.countDocuments({ category: ct })
+			return ({ ct, categoryCount });
 		}))
+
+		let samples = await Promise.all(categories.map((c, i) => {
+			if (counts[i]?.categoryCount > 0) {
+				console.log('chegou')
+				return Hotel.findOne({ category: c })
+			}
+			else return null
+		}))
+
 		let resultingCategories = categories.map((ct, i) => {
 			let obj = {};
-			obj[ct] = counts[i]
-			return obj
+			obj['category'] = ct;
+			obj['count'] = counts[i].categoryCount;
+			obj['photo'] = samples[i]?.photos[0]
+			if (obj.photo) return obj;
+			else return null
 		});
 		res.status(200).json(resultingCategories)
 	} catch (err) {
 		next(createError(401, 'Failed to count hotels by categories.'))
+	}
+}
+
+export const retrieveFeaturedHotels = async (req, res, next) => {
+	delete req.query.featured;
+	const { min, max, ...otherFilters } = req.query;
+	try {
+		const featuredHotels = await Hotel.find({
+			featured: true,
+			...otherFilters,
+			cheapestPrice: { $gt: min | 1, $lt: max || 5000 }
+		})
+			.limit(req.query.limit)
+		res.status(200).json(featuredHotels)
+	} catch (err) {
+		next(createError(401, 'Failed to find featured hotels'))
 	}
 }

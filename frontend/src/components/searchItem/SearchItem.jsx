@@ -1,33 +1,45 @@
+import { Link } from 'react-router-dom';
 import './searchItem.css';
 
-const SearchItem = () => {
+const SearchItem = ({ item }) => {
+
+	const review = (rating) => {
+		if (rating >= 9.5) return 'Wonderful'
+		else if (rating >= 9) return 'Incredible'
+		else if (rating >= 8) return 'Exceptional'
+		else if (rating >= 7) return 'Reasonable'
+		else return 'Decent'
+	}
 
 	return (
 		<div className="searchItem">
 			<img
-				src="https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1"
-				alt="Hotel image"
+				src={item.photos[0]}
+				alt={item.city}
 				className='searchItemImage' />
 			<div className="searchItemDescription">
-				<h1 className="searchItemTitle">Castle apartments</h1>
-				<span className="searchItemDistance">6km from center</span>
+				<h1 className="searchItemTitle">{item.title}, {item.name}</h1>
+				<span className="searchItemDistance">{item.category} {item.distance} km from {item.city} center</span>
 				<span className="searchItemTaxiOption">Free bike ride</span>
-				<span className="searchItemSubtitle">View from the mountains</span>
-				<span className="searchItemFeatures">Entire apartment, 1 bathroom, 70m², 1 king size bed</span>
+				<span className="searchItemSubtitle">{item.address}</span>
+				<span className="searchItemFeatures">{item.description}</span>
 				<span className="searchItemCancelOption">Free cancellation</span>
 				<span className="searchItemCancelOptionSubtitle">You can cancel free of charge</span>
 			</div>
 			<div className="searchItemDetails">
-				<div className="searchItemRating">
-					<span>Excellent</span>
-					<button>9.0</button>
-				</div>
+				{item.rating && <div className="searchItemRating">
+					<span>{review(item.rating)}</span>
+					<button>{item.rating}</button>
+				</div>}
 				<div className="searchItemDetailsBody">
-					<span className="searchItemPrice">$145</span>
+					<span className="searchItemPrice">${item.cheapestPrice}</span>
 					<span className="searchItemTaxes">Taxes and fees included</span>
-					<button className="searchItemAvailability">See availability</button>
+					{/* hotels/hotel/633208c58e10ea9eb9f9973a */}
+					<Link to={`/hotels/hotel/${item._id}`}>
+					{/* <Link to='/hotels'> */}
+						<button className="searchItemAvailability">See availability</button>
+					</Link>
 				</div>
-
 
 			</div>
 		</div>

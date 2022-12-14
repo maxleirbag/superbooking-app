@@ -39,7 +39,7 @@ const Header = ({ headerType }) => {
 
 	const navigate = useNavigate();
 	const handleSearch = () => {
-		navigate('/hospedagens', { state: { destination, date, stayOptions } });
+		navigate('/hotels', { state: { destination, date, stayOptions } });
 	}
 
 

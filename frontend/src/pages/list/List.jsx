@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
 import SearchItem from '../../components/searchItem/SearchItem';
 import Footer from '../../components/footer/Footer';
+import useFetch from "../../hooks/useFetch";
 
 const List = () => {
 
@@ -16,6 +17,8 @@ const List = () => {
 	const [destination, setDestination] = useState(location.state.destination)
 	const [stayOptions, setStayOptions] = useState(location.state.stayOptions)
 	const [date, setDate] = useState(location.state.date)
+
+	const { data, loading, error, refetch } = useFetch(`http://localhost:8800/hotels?city=${destination}`);
 
 
 	const selectedHeaderType = 'list';
@@ -71,15 +74,14 @@ const List = () => {
 						<button>Search</button>
 					</div>
 					<div className="listResult">
-						<SearchItem />
-						<SearchItem />
-						<SearchItem />
-						<SearchItem />
-						<SearchItem />
+						{!loading && data.map((item) =>
+							<SearchItem item={item} key={item?._id} />)}
 					</div>
 				</div>
 			</div>
-			<div className='footerWrapper'><Footer /></div>
+			<div className='footerWrapper'>
+				<Footer />
+			</div>
 		</div>
 	)
 }

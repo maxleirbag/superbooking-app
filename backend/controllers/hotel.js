@@ -84,7 +84,6 @@ export const getHotelCountByCategory = async (req, res, next) => {
 
 		let samples = await Promise.all(categories.map((c, i) => {
 			if (counts[i]?.categoryCount > 0) {
-				console.log('chegou')
 				return Hotel.findOne({ category: c })
 			}
 			else return null

@@ -51,10 +51,9 @@ export const retrieveHotelById = async (req, res, next) => {
 }
 
 export const retrieveHotels = async (req, res, next) => {
-  console.log(req.query)
   let filter = req.query;
-  if (!req.query.city.length) delete filter.city
-  const { min, max, ...otherFilters } = req.query;
+  if (req.query.city && !req.query.city.length) delete filter.city
+  const { min, max, ...otherFilters } = filter;
   try {
     const hotels = await Hotel.find({
       ...otherFilters,

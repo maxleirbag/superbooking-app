@@ -1,3 +1,4 @@
 backend/.env
 backend/scratch.json
 Mongo Hotel.postman_collection.json
+.vscode/launch.json

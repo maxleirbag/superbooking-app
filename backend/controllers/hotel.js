@@ -4,7 +4,7 @@ import { createError } from "../utils/error/errorHandler.js";
 export const createHotel = async (req, res, next) => {
   let hotelWannaBe = req.body;
   let validPhoto = [];
-  if (req.body.photos.length && typeof req.body.photos == Array) {
+  if (req.body.photos.length && typeof req.body.photos != String) {
     const possiblePhotos = req.body.photos;
     validPhoto = possiblePhotos.filter((pp) => pp.includes('https'));
     hotelWannaBe.photos = validPhoto;
@@ -19,7 +19,7 @@ export const createHotel = async (req, res, next) => {
     const savedHotel = await newHotel.save();
     res.status(200).json(savedHotel)
   } catch (err) {
-    next(createError(401, 'Error creating hotel info.'));
+    next(createError(401, 'Error creating hotel info.\n' + err));
   }
 }
 

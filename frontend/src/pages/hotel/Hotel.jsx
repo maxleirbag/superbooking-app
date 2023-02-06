@@ -16,6 +16,7 @@ import useFetch from "../../hooks/useFetch";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
+import { dayDifference } from "../../utils/DateCalculator.js";
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
@@ -42,6 +43,7 @@ const Hotel = () => {
     }
   };
 
+  const days = dayDifference(date[0].endDate, date[0].startDate);
   const selectedHeaderType = "list";
   const photos = data.photos;
 
@@ -99,7 +101,7 @@ const Hotel = () => {
             <h1>Ideal for couples</h1>
             <span>Located at the center of the galaxy, this room scored the highest in the city</span>
             <h2>
-              <b>$678</b> (7 nights)
+              <b>$678</b> ({days} nights)
             </h2>
             <button>Book Reservation</button>
           </div>

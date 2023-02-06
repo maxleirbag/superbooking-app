@@ -20,8 +20,9 @@ import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
 
 const Header = ({ headerType }) => {
-  // TODO useEffect() se o endDate for selecionado, fecha o DateRangePicker
-
+  const today = new Date();
+  let tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
   const [destination, setDestination] = useState("");
 
   const [openStayOptions, setOpenStayOptions] = useState();
@@ -33,8 +34,8 @@ const Header = ({ headerType }) => {
   const [openDate, setOpenDate] = useState();
   const [date, setDate] = useState([
     {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: today,
+      endDate: tomorrow,
       key: "selection",
     },
   ]);

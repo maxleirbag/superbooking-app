@@ -34,7 +34,7 @@ const SearchItem = ({ item }) => {
           </div>
         )}
         <div className="searchItemDetailsBody">
-          <span className="searchItemPrice">${item.cheapestPrice}</span>
+          <span className="searchItemPrice">Starting at ${item.cheapestPrice}</span>
           <span className="searchItemTaxes">Taxes and fees included</span>
           <Link to={`/hotels/hotel/${item._id}`}>
             <button className="searchItemAvailability">See availability</button>

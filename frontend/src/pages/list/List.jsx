@@ -26,10 +26,6 @@ const List = () => {
     <div>
       <Navbar />
       <Header headerType={selectedHeaderType} />
-      {/* {location.state} */}
-      {/* {location.state.map((item) => (
-        <div>item</div>
-      ))} */}
 
       <div className="listContainer">
         <div className="listWrapper">

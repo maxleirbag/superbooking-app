@@ -101,7 +101,7 @@ const Hotel = () => {
             <h1>Ideal for couples</h1>
             <span>Located at the center of the galaxy, this room scored the highest in the city</span>
             <h2>
-              <b>$678</b> ({days} nights)
+              <b>${data.cheapestPrice * days}</b> ({days} nights)
             </h2>
             <button>Book Reservation</button>
           </div>

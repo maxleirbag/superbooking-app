@@ -4,15 +4,12 @@ import { verifyAdmin, verifyToken, verifyUser } from "../utils/auth/verifyToken.
 
 const router = express.Router();
 
-router.post('/', register);
-router.post('/login', login);
+router.post("/register", register);
+router.post("/login", login);
 
+// router.get("/authorize/:id", verifyUser);
+// router.get("/authenticate", //verifyToken);
 
-router.get('/authorize/:id', verifyUser)
-router.get('/authenticate', verifyToken)
-
-router.get('/isAdmin/:id', verifyAdmin)
-
-
+// router.get("/isAdmin/:id", verifyAdmin);
 
 export default router;

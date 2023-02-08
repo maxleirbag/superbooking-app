@@ -22,8 +22,8 @@ const Login = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
-    const res = await axios.post("//localhost:8800/auth/login", credentials);
     try {
+      const res = await axios.post("//localhost:8800/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/");
     } catch (err) {
@@ -39,7 +39,6 @@ const Login = () => {
         <button disabled={loading} onClick={handleClick} className="lButton">
           Log in
         </button>
-        {error && <span>{error.mesage}</span>}
       </div>
     </div>
   );

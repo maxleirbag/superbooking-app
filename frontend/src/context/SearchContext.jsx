@@ -20,8 +20,7 @@ const SearchReducer = (state, action) => {
       return INITIAL_STATE;
 
     default:
-      // state;
-      throw new Error();
+      return state;
   }
 };
 

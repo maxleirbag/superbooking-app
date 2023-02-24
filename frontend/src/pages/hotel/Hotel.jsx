@@ -32,23 +32,18 @@ const Hotel = () => {
   const { date, options } = useContext(SearchContext);
   const { data, loading, error } = useFetch(`http://localhost:8800/hotels/hotel/${id}`);
 
-  console.log([date, useContext(SearchContext)]);
   const handleOpenPresentation = (index) => {
     setOpenPresentation(!openPresentation);
     setSlideNumber(index);
   };
 
   const handleSlideArrow = (direction) => {
-    console.log(direction);
     if (direction.toUpperCase() == "L" && slideNumber > 0) {
       setSlideNumber(slideNumber - 1);
     } else if (direction.toUpperCase() == "R" && slideNumber < photos.length - 1) {
       setSlideNumber(slideNumber + 1);
     }
   };
-  console.log(date[0]);
-  console.log(date[0].endDate);
-  console.log(date[0].startDate);
 
   const days = dayDifference(date[0].endDate, date[0].startDate);
   const selectedHeaderType = "list";

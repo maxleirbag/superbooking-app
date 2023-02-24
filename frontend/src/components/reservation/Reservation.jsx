@@ -12,8 +12,6 @@ const Reservation = ({ setOpen, hotelId }) => {
   const { data, loading, error } = useFetch(`http://localhost:8800/hotels/rooms/${hotelId}`);
   const navigate = useNavigate();
   const { date } = useContext(SearchContext);
-  console.log(date);
-  console.log(data[0]);
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -47,7 +45,7 @@ const Reservation = ({ setOpen, hotelId }) => {
       );
       setOpen(false);
       console.log(`Room (id: ${roomId})  was booked!!`);
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.log(`Reservation failed. Probably already booked for ${date[0].startDate} until ${date[0].endDate} `);
     }

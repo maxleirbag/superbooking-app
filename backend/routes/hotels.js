@@ -6,6 +6,7 @@ import {
   removeHotel,
   retrieveFeaturedHotels,
   retrieveHotelById,
+  retrieveHotelRooms,
   retrieveHotels,
   updateHotel,
 } from "../controllers/hotel.js";
@@ -25,5 +26,6 @@ router.delete("/:id", removeHotel);
 router.get("/countByCity", getHotelCountByCity);
 router.get("/countByCategory", getHotelCountByCategory);
 router.get("/featured", retrieveFeaturedHotels);
+router.get("/rooms/:id", retrieveHotelRooms);
 
 export default router;

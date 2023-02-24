@@ -5,7 +5,6 @@ export const verifyToken = (req, res, next) => {
   const token = process.env.ACCESS_TOKEN_SECRET;
   if (!token) return next(createError(401, "You are not authenticated."));
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    console.log(user);
     if (err) {
       console.error(err);
       return next(createError(403, "You don't have enough permission to continue."));

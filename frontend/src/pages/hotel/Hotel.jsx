@@ -11,22 +11,26 @@ import Navbar from "../../components/navbar/Navbar";
 import "./hotel.css";
 import Mail from "../../components/mail/Mail";
 import Footer from "../../components/footer/Footer";
+import Reservation from "../../components/reservation/Reservation";
 import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
 import { dayDifference } from "../../utils/DateCalculator.js";
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [openPresentation, setOpenPresentation] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
+  const navigate = useNavigate();
   const location = useLocation();
   const id = location.pathname.split("/")[3];
-  const { data, loading, error } = useFetch(`http://localhost:8800/hotels/hotel/${id}`);
-
+  const { user } = useContext(AuthContext);
   const { date, options } = useContext(SearchContext);
+  const { data, loading, error } = useFetch(`http://localhost:8800/hotels/hotel/${id}`);
 
   console.log([date, useContext(SearchContext)]);
   const handleOpenPresentation = (index) => {
@@ -42,10 +46,21 @@ const Hotel = () => {
       setSlideNumber(slideNumber + 1);
     }
   };
+  console.log(date[0]);
+  console.log(date[0].endDate);
+  console.log(date[0].startDate);
 
   const days = dayDifference(date[0].endDate, date[0].startDate);
   const selectedHeaderType = "list";
   const photos = data.photos;
+
+  const handleClick = () => {
+    if (user) {
+      setOpenModal(true);
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div>
@@ -103,11 +118,12 @@ const Hotel = () => {
             <h2>
               <b>${data.cheapestPrice * days}</b> ({days} nights)
             </h2>
-            <button>Book Reservation</button>
+            <button onClick={handleClick}>Book Reservation</button>
           </div>
         </div>
         <Mail />
         <Footer />
+        {openModal && <Reservation hotelId={id} setOpen={setOpenModal} />}
       </div>
     </div>
   );

@@ -61,23 +61,19 @@ const Reservation = ({ setOpen, hotelId }) => {
       <div className="rContainer">
         <FontAwesomeIcon icon={faCircleXmark} className="rClose" onClick={() => setOpen(false)} />
         <span>Select your rooms:</span>
-
         {data &&
           data.map((item) => (
-            <>
-              <div className="rItem" key={item._id}>
-                <div className="coisa">
-                  {item.title} aí {item.price}
-                </div>
+            <div className="room" key={item.title}>
+              <div className="rItem">
                 <div className="rItemInfo">
-                  <div className="rTitle">teste{item.title}</div>
-                  <div className="rDesc">{item.description}</div>
-                  <div className="rMax">Max people: {item.maxPeople}</div>
+                  <div className="rTitle">{item?.title}</div>
+                  <div className="rDesc">{item?.description}</div>
+                  <div className="rMax">Max people: {item?.maxPeople}</div>
                 </div>
-                <div className="rPrice">{item.price}</div>
+                <div className="rPrice">{item?.price}</div>
               </div>
               <div className="rSelectRooms">
-                {item.roomNumbers.map((roomNumber) => {
+                {item?.roomNumbers.map((roomNumber) => {
                   <div className="room">
                     <label>chegou{roomNumber.number}</label>
                     <input
@@ -89,7 +85,7 @@ const Reservation = ({ setOpen, hotelId }) => {
                   </div>;
                 })}
               </div>
-            </>
+            </div>
           ))}
         <button onClick={handleClick} className="rButton">
           Reserve Now!

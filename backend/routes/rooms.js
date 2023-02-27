@@ -15,7 +15,7 @@ router.get("/", retrieveRooms);
 router.get("/:id", retrieveRoom);
 
 router.patch("/:id", updateRoom); //verifyAdmin
-router.patch("/:id", updateRoomAvailability);
+router.patch("/availability/:id", updateRoomAvailability);
 
 router.delete("/:id/:hotelId", deleteRoom);
 

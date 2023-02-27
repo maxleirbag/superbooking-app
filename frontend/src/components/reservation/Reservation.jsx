@@ -29,7 +29,6 @@ const Reservation = ({ setOpen, hotelId }) => {
   const allDates = getDatesInRange(date[0].startDate, date[0].endDate);
 
   const isAvailable = (roomNumber) => {
-    console.log(roomNumber);
     const isReserved = roomNumber.unavailableDates.some((date) => allDates.includes(new Date(date).getTime()));
     return !isReserved;
   };
@@ -48,7 +47,6 @@ const Reservation = ({ setOpen, hotelId }) => {
           return res.data;
         })
       );
-      console.log(idsQuartos);
       setOpen(false);
       console.log(`Room was booked!!`);
       // navigate("/");

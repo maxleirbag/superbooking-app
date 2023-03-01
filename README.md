@@ -11,3 +11,4 @@
 
 1. Abra o terminal no diretório do backend e rode 'npm start', para habilitar a API;
 2. Abra o terminal no diretório do frontend e rode 'npm start' para interagir com a aplicação.
+3. Use o link, padrão do Vite, 'http://localhost:5173/' para acessar o aplicativo localmente.
